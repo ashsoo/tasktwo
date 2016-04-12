@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Marker;
 
 
-public class task2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener ,GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener {
+public class task2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener ,GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
 
@@ -43,9 +43,9 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        // adding marker
         mMap.setOnMapClickListener(this);
         mMap.setOnMapLongClickListener(this);
-
     }
 
 
@@ -55,13 +55,6 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
 
         //show zoom in zoom out buttons
         mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        //enable adding marker
-        mMap.setOnMapClickListener(this);
-        mMap.setOnMapLongClickListener(this);
-        mMap.setOnMarkerClickListener(this);
-
-
 
         // check permission to access user's location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -101,7 +94,7 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
         float zoom = mMap.getCameraPosition().zoom;
         if (zoom>=15){
             //add marker with  title
-            mMap.addMarker(new MarkerOptions().position( point).draggable(true).title(point.toString())
+            mMap.addMarker(new MarkerOptions().position( point).title(point.toString())
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
         }
         else if (zoom<15){
@@ -109,14 +102,7 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
         }
 
     }
-    @Override
-    public boolean onMarkerClick(final Marker marker) {
 
-        if(marker!= null) {
-           marker.setTitle(marker.getTitle());
-        }
-        return false;
-    }
 
     //-------------END for Adding Marker ----------------------------------
 
