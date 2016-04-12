@@ -43,9 +43,7 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        // adding marker
-        mMap.setOnMapClickListener(this);
-        mMap.setOnMapLongClickListener(this);
+
     }
 
 
@@ -56,6 +54,10 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
         //show zoom in zoom out buttons
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
+        // adding marker
+        mMap.setOnMapClickListener(this);
+        mMap.setOnMapLongClickListener(this);
+        
         // check permission to access user's location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Permission was denied. Display an error message.
