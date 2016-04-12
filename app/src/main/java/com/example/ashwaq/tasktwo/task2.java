@@ -58,6 +58,10 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
 
         // check permission to access user's location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Permission was denied. Display an error message.
+            showPermissionError();
+        }
+        else if (mMap != null) {
             //permission granted - will show user's location layer - user's location button
             mMap.setMyLocationEnabled(true);
             //set user's location  with zoom 13
@@ -69,10 +73,7 @@ public class task2 extends FragmentActivity implements OnMapReadyCallback, Googl
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(location.getLatitude(), location.getLongitude()), 13));
             }
-        }
-        else {
-            // Permission was denied. Display an error message.
-            showPermissionError();
+
         }
 
 
